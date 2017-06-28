@@ -1,0 +1,18 @@
+/npm-debug.log
+.settings/
+# Package Files #
+*.jar
+*.war
+*.ear
+*.com
+*.iml
+*.log
+*.log.*
+target/
+.idea/
+logs/
+.node_modules/
+node_modules
+# mac os #
+.DS_Store
+*.properties

@@ -1,0 +1,65 @@
+@import "config";
+
+/*
+    初始化页面布局
+*/
+html,body{
+  //background: #5ecaf0;
+}
+
+#app {
+  //  overflow: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  margin: auto;
+  font-size: @font-size-text;
+  -webkit-tap-highlight-color: transparent;
+  font-family: @font-family;
+  color:#333;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+* {
+  outline: none;
+  margin: 0;
+  padding: 0;
+  font-weight: 300;
+  box-sizing: border-box;
+}
+
+ul,ol {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: @color-black;
+}
+img {
+  border: 0;
+  vertical-align: middle;
+}
+div{
+  box-sizing: border-box;
+}
+h, h1, h2, h3, h4, h5, h6 {
+  text-decoration: none;
+  font-weight: normal;
+  font-size: 100%;
+  margin:0;
+}
+*::-webkit-scrollbar {
+  height: 0;
+  width: 0;
+}

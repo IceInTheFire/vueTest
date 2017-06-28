@@ -1,11 +1,11 @@
 <!-- 简单写个title和一个循环 -->
 <template>
-    <div id="example">
+    <div id="example" class="red">
         <h1>{{ msg }}</h1>
         <ul>
             <li v-for="n in 5">{{ n }}</li>
         </ul>
-        <img src="img/1_bai.png" alt="">
+        <img src="../img/1_bai.png" alt="">
     </div>
 </template>
 
