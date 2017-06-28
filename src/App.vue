@@ -5,6 +5,7 @@
         <ul>
             <li v-for="n in 5">{{ n }}</li>
         </ul>
+        <img src="img/1_bai.png" alt="">
     </div>
 </template>
 
@@ -18,10 +19,10 @@
     }
 </script>
 
-<style scoped lang="less" rel="stylesheet/less" type="text/css">
+<style scoped>
     #example {
         background: skyblue;
         /*height: 100vh;*/
-        height: 1000px;
+        height:100px;
     }
 </style>
