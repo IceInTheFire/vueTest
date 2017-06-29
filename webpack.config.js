@@ -9,8 +9,8 @@ module.exports = {
         'css': './src/css.js'
     }, //编译入口文件
     output: {
-        publicPath: '/dist/js', //服务器的路径
-        path: path.resolve(__dirname + '/dist/js'), //编译到指定目录下
+        publicPath: '/dist/js/', //服务器的路径
+        path: path.resolve(__dirname + '/dist/js/'), //编译到指定目录下
         filename: '[name].js?v=[hash]' //编译后的文件名
     },
     module: {
@@ -72,34 +72,42 @@ module.exports = {
     // },
     resolve:{
         // extensions: ['', '.js', '.vue', '.jsx'], //后缀名自动补全
-      modules:[path.resolve(__dirname, 'node_modules')],
+        // modules:[path.resolve(__dirname, 'node_modules')],
         alias:{
-        }
+            vue: 'vue/dist/vue.min.js', //webpack打包时，需要设置别名
+            store: path.resolve('src/store/'), //vuex 状态
+        },
+        extensions: ['.js', '.vue', '.jsx', '.json']
     },
     plugins:[
         new webpack.optimize.UglifyJsPlugin({
-            // 最紧凑的输出
-            beautify: false,
-            // 删除所有的注释
-            comments: false,
-            sourceMap: true,
             compress: {
-                // 在UglifyJs删除没有用到的代码时不输出警告
-                warnings: false,
-                // 删除所有的 `console` 语句
-                // 还可以兼容ie浏览器
-                drop_console: true,
-                // 内嵌定义了但是只用到一次的变量
-                collapse_vars: true,
-                // 提取出出现多次但是没有定义成变量去引用的静态值
-                reduce_vars: true,
+                warnings: false
             }
         }),
-        new webpack.DefinePlugin({
-            'process.env': { //设置成生产环境
-                NODE_ENV: '"production"'
-            }
-        }),
+        // new webpack.optimize.UglifyJsPlugin({
+        //     // 最紧凑的输出
+        //     beautify: false,
+        //     // 删除所有的注释
+        //     comments: false,
+        //     sourceMap: true,
+        //     compress: {
+        //         // 在UglifyJs删除没有用到的代码时不输出警告
+        //         warnings: false,
+        //         // 删除所有的 `console` 语句
+        //         // 还可以兼容ie浏览器
+        //         drop_console: true,
+        //         // 内嵌定义了但是只用到一次的变量
+        //         collapse_vars: true,
+        //         // 提取出出现多次但是没有定义成变量去引用的静态值
+        //         reduce_vars: true,
+        //     }
+        // }),
+        // new webpack.DefinePlugin({
+        //     'process.env': { //设置成生产环境
+        //         NODE_ENV: '"production"'
+        //     }
+        // }),
         new HtmlWebpackPlugin({ //根据模板插入css/js等生成最终HTML
             filename: '../../index.html', //生成的html存放路径，相对于 path
             template: './src/template/index.html',  //html模板路径
