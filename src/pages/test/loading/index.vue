@@ -1,33 +1,34 @@
 <template>
-    <div class="bodyMiddle">
+    <div class="bodyMidde">
         <div class="h70">
             <v-head :change = "change" class = "head"></v-head>
         </div>
+
+        <!--zfl pc端-->
+
+        <div class="activityBox">
+            <div class="activityLump">
+                <img src="" alt="">
+            </div>
+            <div class="activityLump">
+                <img src="" alt="">
+            </div>
+            <div class="activityLump">
+                <img src="" alt="">
+            </div>
+            <div class="activityLump">
+                <img src="" alt="">
+            </div>
+            <div class="activityLump">
+                <img src="" alt="">
+            </div>
+        </div>
+
         <button v-show="!loading" @click="resetLoading" class="btn btn-blue">开始loading</button>
         <button v-show="loading" @click="resetLoading" class="btn btn-blue">关闭loading</button>
-        <br>
-        <br>
-        <button @click="onClickGet" class="btn btn-blue">获取</button>
-        <br>
-        <br>
-        <table v-show="datas.length">
-            <thead>
-                <tr>
-                    <td>uid</td>
-                    <td>uname</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="data in datas">
-                    <td>{{ data.uid }}</td>
-                    <td>{{ data.uname }}</td>
-                </tr>
-            </tbody>
-        </table>
-        <img src="../../img/loading.gif" alt="">
     </div>
 </template>
-<style lang="less" scoped rel="stylesheet/less" type="text/css">
+<style lang="less" scoped>
     .head{
         position: fixed;
         left:0px;
@@ -54,13 +55,13 @@
 </style>
 <script>
     import core from "core";
+    //    import util from 'util'
     export default{
         data(){
             return {
-                msg: 'home',
+                msg: 'zfl home',
                 change : false,
                 loading : true,
-                datas: []
             }
         },
         created(){
@@ -86,20 +87,6 @@
                     this.loading = true;
                 }
             },
-            onClickGet() {
-                var that = this;
-                core.api.shuju.shuju({}).then(function(response){
-                    if(response.code == 'success') {
-                        that.datas = response.model.dataList;
-                    }
-                }).catch(function(reason){
-                    if(reason == '接口出错') {
-                        console.log("接口出错");
-                    } else {
-                        console.log("错误信息");
-                    }
-                })
-            }
         }
     }
 </script>

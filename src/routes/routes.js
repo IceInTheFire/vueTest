@@ -13,21 +13,26 @@ export default [
                 meta: { auth: false },
                 component: resolve => require(["../pages/home/"], resolve )
             },
-            // {
-            //     path: '/imgViewload',
-            //     meta: { auth: false },
-            //     component: resolve => require(["../pages/test/imgViewload/"], resolve )
-            // },
-            // {
-            //     path: '/loading',
-            //     meta: { auth: false },
-            //     component: resolve => require(["../pages/test/loading/"], resolve )
-            // },
-            // {
-            //     path: '/carousel',
-            //     meta: { auth: false },
-            //     component: resolve => require(["../pages/test/carousel/"], resolve )
-            // },
+            {
+                path: '/imgViewload',
+                meta: { auth: false },
+                component: resolve => require(["../pages/test/imgViewload/"], resolve )
+            },
+            {
+                path: '/imglazyload',
+                meta: { auth: false },
+                component: resolve => require(["../pages/test/imglazyload/"], resolve )
+            },
+            {
+                path: '/loading',
+                meta: { auth: false },
+                component: resolve => require(["../pages/test/loading/"], resolve )
+            },
+            {
+                path: '/carousel',
+                meta: { auth: false },
+                component: resolve => require(["../pages/test/carousel/"], resolve )
+            },
             {
                 path: '*', //其他页面
                 redirect: '/home'

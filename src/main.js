@@ -4,15 +4,41 @@ import App from './App';
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
 
-import routes from './routes/routes'
-import  storeInfo  from './store/'
+import routes from './routes/routes';
+import  storeInfo  from './store/';
+import components from './components/'; //加载公共组件
+import core from "./core";
+
+import VueViewload from 'vue-viewload';  //webpack2下出错  webpack1下成功
+import VueAwesomeSwiper from 'vue-awesome-swiper';
+
+// import VueLazyload from 'vue-lazyload/vue-lazyload-next';
+
+// for Vue 1.0
+import VueLazyload from 'vue-lazyload'
+// for Vue 2.0
+// import VueLazyload from 'vue-lazyload/vue-lazyload-next'
 
 
 
-console.log("靠你大爷");
+
+Object.keys(components).forEach((key) => {
+    var name = key.replace(/(\w)/, (v) => v.toUpperCase()); //首字母大写
+    Vue.component(`v${name}`, components[key])
+});
+
 
 Vue.use(VueRouter);
 Vue.use( Vuex );
+Vue.use(VueViewload);
+Vue.use(VueAwesomeSwiper);
+Vue.use(VueLazyload, {
+    error: '/dist/js/../static/img/1_bai.png',
+    loading: '/dist/js/../static/font/loading.gif',
+    try: 3, // default 1
+    preLoad: 1,
+    attempt:1    //可视加载一行
+})
 
 
 var store = new Vuex.Store( storeInfo );
@@ -41,10 +67,6 @@ new Vue({
     el: '#app',
     router,store,
     render: h => h(App)
-}).$mount('#app')
-console.log("router");
-console.log(router);
-console.log(store);
-console.log("store");
+})
 
 // new Vue({ router,store }).$mount('#app');

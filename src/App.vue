@@ -5,7 +5,7 @@
         <!--<ul>-->
             <!--<li v-for="n in 5">{{ n }}</li>-->
         <!--</ul>-->
-        <!--<img src="../img/1_bai.png" alt="">-->
+        <!--<img src="img/1_bai.png" alt="">-->
     <!--</div>-->
     <router-view></router-view>
 </template>
@@ -26,7 +26,7 @@
     }
 </script>
 
-<style scoped>
+<style lang="less" scoped rel="stylesheet/less" type="text/css">
     #example {
         background: skyblue;
         /*height: 100vh;*/

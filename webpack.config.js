@@ -2,6 +2,60 @@
 var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+const IS_ENV = process.env.NODE_ENV == 'production'  //production||dev   //下载cross-env
+
+console.log(IS_ENV);
+
+var plugins = [];
+if (IS_ENV) { //生产环境
+    plugins.push(new webpack.optimize.UglifyJsPlugin({
+        // 最紧凑的输出
+        beautify: false,
+        // 删除所有的注释
+        comments: false,
+        sourceMap: true,
+        compress: {
+            // 在UglifyJs删除没有用到的代码时不输出警告
+            warnings: false,
+            // 删除所有的 `console` 语句
+            // 还可以兼容ie浏览器
+            drop_console: true,
+            // 内嵌定义了但是只用到一次的变量
+            collapse_vars: true,
+            // 提取出出现多次但是没有定义成变量去引用的静态值
+            reduce_vars: true,
+        }
+    }));
+    plugins.push(new webpack.DefinePlugin({
+        'process.env': { //设置成生产环境
+            NODE_ENV: '"production"'
+        }
+    }));
+    srcPath = 'http://mcdn.duoshoubang.com/js/'
+    srcPath = "/dist/js/";
+}
+else {
+    plugins.push( new webpack.optimize.UglifyJsPlugin({
+        compress: {
+            warnings: false
+        }
+    }));
+    srcPath = '/dist/js/';
+}
+
+plugins.push(new HtmlWebpackPlugin({ //根据模板插入css/js等生成最终HTML
+    filename: '../../index.html', //生成的html存放路径，相对于 path
+    template: './src/template/index.html',  //html模板路径
+    inject: true,
+    chunks: ['main','css']
+}));
+plugins.push(new HtmlWebpackPlugin({ //根据模板插入css/js等生成最终HTML
+    filename: '../index.html', //生成的html存放路径，相对于 path
+    template: './src/template/index.html',  //html模板路径
+    inject: true,
+    chunks: ['main','css']
+}));
+
 
 module.exports = {
     entry: {
@@ -43,16 +97,16 @@ module.exports = {
             {
                 // 图片加载器，雷同file-loader，更适合图片，可以将较小的图片转成base64，减少http请求
                 // 如下配置，将小于8192byte的图片转成base64码
-                test: /\.(png|jpg|gif)$/,
+                test: /\.(png|jpg)$/,
                 /* 排除模块安装目录的文件 */
                 exclude: /node_modules/,
                 // loader: 'url-loader?limit=8192&name=./static/img/[hash].[ext]',
-                loader: 'url-loader?limit=8192&name=../static/img/[name].[ext]?v=[hash]',
+                loader: 'url-loader?limit=1000&name=../img/[name].[ext]?v=[hash]',
             },
             {
                 test: /\.(eot|woff|svg|ttf|woff2|gif|appcache)(\?|$)/,
                 exclude: /^node_modules$/,
-                loader: 'file-loader?name=./static/font/[name].[ext]?v=[hash]'
+                loader: 'file-loader?name=../static/font/[name].[ext]?v=[hash]'
                 // loader: 'file-loader?name=../[name].[ext]?v=[hash]'
             }
         ]
@@ -72,55 +126,15 @@ module.exports = {
     // },
     resolve:{
         // extensions: ['', '.js', '.vue', '.jsx'], //后缀名自动补全
-        // modules:[path.resolve(__dirname, 'node_modules')],
+        modules:[path.resolve(__dirname, 'node_modules')],
         alias:{
-            vue: 'vue/dist/vue.min.js', //webpack打包时，需要设置别名
+            // vue: 'vue/dist/vue.min.js',          //webpack打包时，需要设置别名,这里设置之后导致tool里的vue消失了   不设置则报错，原因我也不知道
             store: path.resolve('src/store/'), //vuex 状态
+            'core': path.resolve('src/core/index.js')
         },
         extensions: ['.js', '.vue', '.jsx', '.json']
     },
-    plugins:[
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            }
-        }),
-        // new webpack.optimize.UglifyJsPlugin({
-        //     // 最紧凑的输出
-        //     beautify: false,
-        //     // 删除所有的注释
-        //     comments: false,
-        //     sourceMap: true,
-        //     compress: {
-        //         // 在UglifyJs删除没有用到的代码时不输出警告
-        //         warnings: false,
-        //         // 删除所有的 `console` 语句
-        //         // 还可以兼容ie浏览器
-        //         drop_console: true,
-        //         // 内嵌定义了但是只用到一次的变量
-        //         collapse_vars: true,
-        //         // 提取出出现多次但是没有定义成变量去引用的静态值
-        //         reduce_vars: true,
-        //     }
-        // }),
-        // new webpack.DefinePlugin({
-        //     'process.env': { //设置成生产环境
-        //         NODE_ENV: '"production"'
-        //     }
-        // }),
-        new HtmlWebpackPlugin({ //根据模板插入css/js等生成最终HTML
-            filename: '../../index.html', //生成的html存放路径，相对于 path
-            template: './src/template/index.html',  //html模板路径
-            inject: true,
-            chunks: ['main','css']
-        }),
-        new HtmlWebpackPlugin({ //根据模板插入css/js等生成最终HTML
-            filename: '../index.html', //生成的html存放路径，相对于 path
-            template: './src/template/index.html',  //html模板路径
-            inject: true,
-            chunks: ['main','css']
-        })
-    ],
+    plugins,
     // vue: {
     //     postcss: [
     //         require('autoprefixer')({
@@ -128,4 +142,5 @@ module.exports = {
     //         })
     //     ]
     // }
+    // devtool:'#source-map',  //false
 }

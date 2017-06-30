@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
-    "dist": "webpack",
-    "dev": "webpack-dev-server --historyApiFallback --port 3000",
+    "dist": "cross-env NODE_ENV=production webpack -p",
+    "dev": "webpack-dev-server --historyApiFallback --port 3222",
     "test": "webpack-dev-server --inline --historyApiFallback --colors --port 3111"
   },
   "repository": {
@@ -20,16 +20,23 @@
   },
   "homepage": "https://github.com/IceInTheFire/vueTest#readme",
   "dependencies": {
+    "is": "^3.2.1",
     "normalize.css": "^7.0.0",
     "vue": "^2.3.4",
+    "vue-awesome-swiper": "^2.5.0",
+    "vue-lazyload": "^1.0.5",
     "vue-router": "^2.6.0",
+    "vue-viewload": "^1.0.15",
     "vuex": "^2.3.1"
   },
   "devDependencies": {
     "autoprefixer-loader": "^3.2.0",
     "babel-core": "^6.25.0",
     "babel-loader": "^7.1.1",
+    "babel-plugin-transform-object-assign": "^6.22.0",
     "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "cross-env": "^5.0.1",
     "css-loader": "^0.28.4",
     "file-loader": "^0.11.2",
     "html-webpack-plugin": "^2.29.0",
