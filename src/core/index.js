@@ -118,9 +118,14 @@ var pPost = (url, data) => {
                 reject(res);
             }
         }, (error) => {
+            console.log("error");
+            console.log(error);
             loading.hideLoading();
             toast('接口出错');  //网络不好还是服务器错误，后期再做区分
             reject('接口出错');
+        },(error) =>{
+            loading.hideLoading();
+            toast('网络出错');  //网络不好还是服务器错误，后期再做区分
         })
     });
 };

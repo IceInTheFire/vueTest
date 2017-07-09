@@ -73,13 +73,39 @@ var ajax = (option) => { //ajax请求方法
             xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
             xhr.send(query.join('&'))
         }
+
+        // xhr.onreadystatechange = () => {
+        //     var response = xhr.responseText;
+        //     if(xhr.readyState == 4) {    //请求完成，api调用成功
+        //         console.log("xhr");
+        //         console.log(xhr);
+        //         if(xhr.status == 200) {
+        //             if (key == getPageKey()) nextMethod(_endIntercept, JSON.parse(response), setting.success)
+        //         } else {
+        //             if (navigator.onLine) { //正常工作
+        //                 if (key == getPageKey()) nextMethod(_endIntercept, null, setting.error)
+        //             } else {
+        //                 //执行离线状态时的任务}
+        //                 if (key == getPageKey()) nextMethod(_endIntercept, null, setting.head)
+        //             }
+        //
+        //         }
+        //     }
+        // }
+
         xhr.onloadend = ({ currentTarget }) => { //请求结束执行方法
             var { response } = currentTarget
             if (/application\/json/.test(currentTarget.getAllResponseHeaders()) || setting.dataType === 'json' && /^(\{|\[)([\s\S])*?(\]|\})$/.test(response)) {
 
                 if (key == getPageKey()) nextMethod(_endIntercept, JSON.parse(response), setting.success)
             } else {
-                if (key == getPageKey()) nextMethod(_endIntercept, null, setting.error)
+                if (navigator.onLine) { //正常工作
+                    if (key == getPageKey()) nextMethod(_endIntercept, null, setting.error)
+                } else {
+                    //执行离线状态时的任务}
+                    if (key == getPageKey()) nextMethod(_endIntercept, null, setting.head)
+                }
+                // if (key == getPageKey()) nextMethod(_endIntercept, null, setting.error)
             }
         }
     })

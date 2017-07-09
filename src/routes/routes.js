@@ -13,11 +13,11 @@ export default [
                 meta: { auth: false },
                 component: resolve => require(["../pages/home/"], resolve )
             },
-            {
-                path: '/imgViewload',
-                meta: { auth: false },
-                component: resolve => require(["../pages/test/imgViewload/"], resolve )
-            },
+            // {
+            //     path: '/imgViewload',
+            //     meta: { auth: false },
+            //     component: resolve => require(["../pages/test/imgViewload/"], resolve )
+            // },
             {
                 path: '/imglazyload',
                 meta: { auth: false },

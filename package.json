@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
+    "build": "cross-env NODE_ENV=production webpack -p",
     "dist": "cross-env NODE_ENV=production webpack -p",
+    "webpack": "webpack",
     "dev": "webpack-dev-server --historyApiFallback --port 3222",
     "test": "webpack-dev-server --inline --historyApiFallback --colors --port 3111"
   },

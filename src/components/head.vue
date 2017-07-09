@@ -159,10 +159,10 @@
                         title:'loading',
                         path :"/loading"
                     },
-                    {
-                        title: "图片懒加载",
-                        path: "/imgViewload"
-                    },
+//                    {
+//                        title: "图片懒加载",
+//                        path: "/imgViewload"
+//                    },
                     {
                         title: "图片懒加载(lazyLoad)",
                         path: "/imglazyload"

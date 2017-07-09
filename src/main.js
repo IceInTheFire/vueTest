@@ -9,7 +9,7 @@ import  storeInfo  from './store/';
 import components from './components/'; //加载公共组件
 import core from "./core";
 
-import VueViewload from 'vue-viewload';  //webpack2下出错  webpack1下成功
+// import VueViewload from 'vue-viewload';  //webpack2下出错  webpack1下成功
 import VueAwesomeSwiper from 'vue-awesome-swiper';
 
 // import VueLazyload from 'vue-lazyload/vue-lazyload-next';
@@ -30,7 +30,7 @@ Object.keys(components).forEach((key) => {
 
 Vue.use(VueRouter);
 Vue.use( Vuex );
-Vue.use(VueViewload);
+// Vue.use(VueViewload);
 Vue.use(VueAwesomeSwiper);
 Vue.use(VueLazyload, {
     error: '/dist/js/../static/img/1_bai.png',
