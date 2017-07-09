@@ -4,7 +4,10 @@
 
 使用：
 
-webpack 打包 
+webpack 打包
+
 npm run dist 打包
+
 npm run build 打包
+
 npm run dev 生成环境
