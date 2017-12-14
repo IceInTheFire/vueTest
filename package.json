@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/IceInTheFire/vueTest#readme",
   "dependencies": {
+    "express": "^4.16.2",
     "is": "^3.2.1",
     "normalize.css": "^7.0.0",
     "vue": "^2.3.4",
