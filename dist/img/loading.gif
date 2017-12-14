@@ -1,1 +1,0 @@
-module.exports = __webpack_public_path__ + "./static/font/loading.gif?v=3c2ed543f57a7480ba1f28ab2bef4191";

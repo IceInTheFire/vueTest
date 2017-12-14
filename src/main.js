@@ -34,7 +34,8 @@ Vue.use( Vuex );
 Vue.use(VueAwesomeSwiper);
 Vue.use(VueLazyload, {
     error: '/dist/js/../static/img/1_bai.png',
-    loading: '/dist/js/../static/font/loading.gif',
+    // error: '',//页面若有大量图片最好不要传参数，默认空就好了
+    loading: '/dist/js/../static/font/loading.gif',//页面若有大量图片最好不要传参数，默认空就好了
     try: 3, // default 1
     preLoad: 1,
     attempt:1    //可视加载一行

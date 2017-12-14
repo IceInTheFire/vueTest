@@ -13,7 +13,7 @@ if (IS_ENV) { //生产环境
         beautify: false,
         // 删除所有的注释
         comments: false,
-        sourceMap: true,
+        // sourceMap: true,
         compress: {
             // 在UglifyJs删除没有用到的代码时不输出警告
             warnings: false,
@@ -31,15 +31,15 @@ if (IS_ENV) { //生产环境
             NODE_ENV: '"production"'
         }
     }));
-    srcPath = 'http://mcdn.duoshoubang.com/js/'
+    // srcPath = 'http://mcdn.duoshoubang.com/js/'   //服务器网址
     srcPath = "/dist/js/";
 }
 else {
-    plugins.push( new webpack.optimize.UglifyJsPlugin({
-        compress: {
-            warnings: false
-        }
-    }));
+    // plugins.push( new webpack.optimize.UglifyJsPlugin({
+    //     compress: {
+    //         warnings: false
+    //     }
+    // }));
     srcPath = '/dist/js/';
 }
 

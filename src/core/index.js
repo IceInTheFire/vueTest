@@ -8,7 +8,7 @@ import toast from "./toast.js";
 ajax.beforeEach((res,next) => {
     //res.url = 'http://localhost:7777' + res.url;
     res.data.s = '测试专用';
-    res.url = 'http://yueqingfang.cn' + res.url
+    res.url = 'http://yueqingfang.cn/markdown' + res.url
     //其他信息处理内容区域
 
 
