@@ -44,58 +44,58 @@ ajax.afterEach((res,next) => {
     }
 });
 
-function _filter(str){
-    str += '' //隐式转换
-    str = str.replace(/%/g, '%25')
-    str = str.replace(/\+/g, '%2B')
-    str = str.replace(/ /g, '%20')
-    str = str.replace(/\//g, '%2F')
-    str = str.replace(/\?/g, '%3F')
-    str = str.replace(/&/g, '%26')
-    str = str.replace(/\=/g, '%3D')
-    str = str.replace(/#/g, '%23')
-    return str
-}
+// function _filter(str){
+//     str += '' //隐式转换
+//     str = str.replace(/%/g, '%25')
+//     str = str.replace(/\+/g, '%2B')
+//     str = str.replace(/ /g, '%20')
+//     str = str.replace(/\//g, '%2F')
+//     str = str.replace(/\?/g, '%3F')
+//     str = str.replace(/&/g, '%26')
+//     str = str.replace(/\=/g, '%3D')
+//     str = str.replace(/#/g, '%23')
+//     return str
+// }
 
-var _ajax = {
-    defaultSetting:{
-        url : window.location,
-        type : 'GET',
-        data : {},
-        dataType : 'json',
-        success:function(){
-
-        },
-        error:function(){
-
-        }
-    },
-    send:function(option){
-        option = Object.assign( this.defaultSetting, option );
-        var query = [];
-        var xhr = new XMLHttpRequest();
-        for( var key in option.data ){
-            query.push( key + "=" + _filter( option.data[key] ) );
-        }
-        if( option.type.toUpperCase() == "GET" ){
-            xhr.open( "GET" , option.url + "?" + query.join("&") , true );
-            xhr.send();
-        }else{
-            xhr.open(setting.type, setting.url, true)
-            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
-            xhr.send(query.join('&'))
-        }
-        xhr.onreadystatechange = function(){
-            if( xhr.readyState == 4 ){
-                if( xhr.status == 200 ){
-                    option.success( JSON.parse( xhr.responseText ) );
-                }else{
-                    option.error();
-                }
-            }
-        }
-    }
-}
+// var _ajax = {
+//     defaultSetting:{
+//         url : window.location,
+//         type : 'GET',
+//         data : {},
+//         dataType : 'json',
+//         success:function(){
+//
+//         },
+//         error:function(){
+//
+//         }
+//     },
+//     send:function(option){
+//         option = Object.assign( this.defaultSetting, option );
+//         var query = [];
+//         var xhr = new XMLHttpRequest();
+//         for( var key in option.data ){
+//             query.push( key + "=" + _filter( option.data[key] ) );
+//         }
+//         if( option.type.toUpperCase() == "GET" ){
+//             xhr.open( "GET" , option.url + "?" + query.join("&") , true );
+//             xhr.send();
+//         }else{
+//             xhr.open(setting.type, setting.url, true)
+//             xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+//             xhr.send(query.join('&'))
+//         }
+//         xhr.onreadystatechange = function(){
+//             if( xhr.readyState == 4 ){
+//                 if( xhr.status == 200 ){
+//                     option.success( JSON.parse( xhr.responseText ) );
+//                 }else{
+//                     option.error();
+//                 }
+//             }
+//         }
+//     }
+// }
 
 //post 请求封装
 var post = (url, data = {}, success = () => { }, error = () => { }, head = {}) => {
