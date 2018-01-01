@@ -26,6 +26,9 @@ const contentType = {
     "xml": "text/xml"
 };
 
+const compress = require('compression');
+app.use(compress());           //配合nginx做gzip压缩  express4以上写法
+
 app.use(history());
 // app.use(express.static("dist"))
 app.use('/dist', express.static('../dist'));
@@ -33,7 +36,7 @@ app.use('/dist', express.static('../dist'));
 app.get('*',function(req, res) {
     const url = req.originalUrl.split('?')[0];
     var html;
-    if(!url || url == '/' || url == '/dist' || url == '/dist/'){
+    if(!url || url == '/' || url == '/dist' || url == '/dist/' || url == '/dist/home' || url == '/dist/home/'){
         html = fs.readFileSync(path.resolve(__dirname, '../dist/index.html'), 'utf-8');
     } else {
         return;
