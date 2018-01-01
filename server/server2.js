@@ -36,12 +36,13 @@ app.use('/dist', express.static('../dist'));
 app.get('*',function(req, res) {
     const url = req.originalUrl.split('?')[0];
     var html;
-    if(!url || url == '/' || url == '/dist' || url == '/dist/' || url == '/dist/home' || url == '/dist/home/'){
+    if(!url || url == '/' || url == '/dist' || url.indexOf('/dist/static') == -1 || url.indexOf('/dist/js/')){
         html = fs.readFileSync(path.resolve(__dirname, '../dist/index.html'), 'utf-8');
+        res.send(html);
     } else {
-        return;
+        // return;
     }
-    res.send(html);
+
 });
 
 app.listen(8888, () => {
